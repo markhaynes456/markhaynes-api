@@ -1,0 +1,7 @@
+{
+	"posts":[
+			<%= posts.each do |post| %>
+				{"title":post.title, "subtitle":post.subtitle,"intro":post.intro, "body":post.body, "outro":post.outro},
+			<% end %>
+		]
+}
