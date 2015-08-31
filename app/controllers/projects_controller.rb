@@ -11,10 +11,27 @@ class ProjectsController < ApplicationController
     render json: set_project
   end
 
+  def edit
+    @project = set_project
+  end
+
+  def update
+    @project = set_project
+    @project.update_attributes(project_params)
+    if @project.image
+      @project.update_attributes(image_url: 'http://localhost:3000'+@project.image.url )
+    end
+    render json: @project, status: :ok, location: @project
+  end
+
   private
   
   def set_project
     Project.find(params[:id])
+  end
+
+  def project_params
+    params.require(:project).permit(:name,:image)
   end
 
  def set_headers

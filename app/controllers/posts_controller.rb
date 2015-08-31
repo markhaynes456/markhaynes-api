@@ -22,9 +22,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = self.set_post
+  end
+
   def update
     @post = self.set_post
+    
     @post.update_attributes(post_params)
+    if @post.image
+      @post.update_attributes(image_url:'http://localhost:3000'+@post.image.url)
+    end
     render json: @post, status: :ok, location: @post
   end
 
@@ -42,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title,:subtitle,:intro,:body,:outro)
+    params.require(:post).permit(:title,:subtitle,:intro,:body,:outro, :image)
   end
 
   def set_headers
