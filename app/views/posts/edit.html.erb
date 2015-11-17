@@ -1,5 +1,9 @@
 <%= form_for(@post) do |f| %>
   <%= f.text_field(:title) %>
+  <%= f.text_field(:subtitle) %>
+  <%= f.text_area(:intro) %>
+  <%= f.text_area(:body) %>
+  <%= f.text_area(:outro) %>
   <%= f.file_field(:image) %>
   <%= f.submit %>
 <% end %>

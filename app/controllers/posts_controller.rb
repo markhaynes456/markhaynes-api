@@ -27,8 +27,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = self.set_post
-    
+    @post = self.set_post    
     @post.update_attributes(post_params)
     if @post.image
       @post.update_attributes(image_url:'http://localhost:3000'+@post.image.url)
